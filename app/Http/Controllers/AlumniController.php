@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Alumni;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewAlumniNotification;
 
 class AlumniController extends Controller
 {
@@ -33,12 +35,14 @@ class AlumniController extends Controller
     {
         $request->validate([
             'graduation_year' => 'required',
+            'email' => 'required|email',
             'program' => 'required',
         ]);
 
-        Alumni::create([
-            'user_id' => Auth::id(), // link to logged-in user
+        $alumni = Alumni::create([
+            'user_id' => Auth::id(),
             'full_name' => $request->full_name,
+            'email' => $request->email,
             'graduation_year' => $request->graduation_year,
             'program' => $request->program,
             'job' => $request->job,
@@ -47,8 +51,13 @@ class AlumniController extends Controller
             'address' => $request->address,
         ]);
 
-        return redirect()->route('alumni.index')->with('success', 'Alumni added successfully!');
+        // ✅ Send notification email
+       Mail::to($alumni->email)->send(new NewAlumniNotification($alumni));
+
+
+        return redirect()->route('alumni.index')->with('success', 'Alumni added successfully and email sent!');
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -64,12 +73,15 @@ class AlumniController extends Controller
     public function update(Request $request, Alumni $alumnus)
     {
         $request->validate([
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
             'graduation_year' => 'required',
             'program' => 'required',
         ]);
 
         $alumnus->update([
             'full_name' => $request->full_name,
+            'email' => $request->email,
             'graduation_year' => $request->graduation_year,
             'program' => $request->program,
             'job' => $request->job,

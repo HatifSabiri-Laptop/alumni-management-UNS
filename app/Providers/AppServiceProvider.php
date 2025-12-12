@@ -11,7 +11,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Load Cloudinary manually if needed
+        $cloudinaryPath = app_path('cloudinary/autoload.php');
+
+        if (file_exists($cloudinaryPath)) {
+            require_once $cloudinaryPath;
+        }
     }
 
     /**

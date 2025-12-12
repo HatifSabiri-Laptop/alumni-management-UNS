@@ -103,9 +103,10 @@
   </style>
 </head>
 
+
 <body>
   <div class="glass-panel">
-    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="mx-auto">
+    <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="mx-auto">
     <h1>Selamat Datang di <span class="text-indigo-600">Alumni UNS</span></h1>
     <p>Sistem Informasi Alumni mahasiswa yang sudah lulus dari UNS.</p>
 

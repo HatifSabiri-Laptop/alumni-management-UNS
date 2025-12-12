@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles (example) */
+.logo-small {
+  @apply w-10 h-20;
+}
+
+.btn {
+  @apply font-bold py-2 px-6 rounded;
+}
+
+.btn-green {
+  @apply bg-green-500 text-white;
+}
+
+.btn-blue:hover {
+  @apply bg-red-700;
+}
+
+nav .shrink-0 img {
+  background: transparent !important;
+}
+
+nav .shrink-0 a {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+/* Edit button (blue) */
+.btn-edit {
+    @apply bg-blue-500 hover:bg-blue-600 text-white;
+}
+
+/* Delete button (red) */
+.btn-delete {
+    @apply bg-red-500 hover:bg-red-600 text-white;
+}

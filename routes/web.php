@@ -2,13 +2,28 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\CloudController;
+use App\Http\Controllers\CareerController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/career', [CareerController::class, 'index'])->name('career.index');
+    Route::get('/career/job', [CareerController::class, 'job'])->name('career.job');
+    Route::get('/career/internship', [CareerController::class, 'internship'])->name('career.internship');
+    Route::post('/career/apply', [CareerController::class, 'apply'])->name('career.apply');
+});
+
+
+Route::get('/upload', function () {
+    return view('upload');
+});
 
 Route::get('/', function () {
     return view('welcome');
 });
-use App\Http\Controllers\AlumniController;
 
 Route::middleware('auth')->group(function () {
+    Route::post('/upload', [CloudController::class, 'upload']);
     Route::resource('alumni', AlumniController::class);
 });
 
