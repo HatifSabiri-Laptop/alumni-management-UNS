@@ -49,8 +49,8 @@ class AlumniController extends Controller
             'address' => $request->address,
         ]);
 
-        // ✅ Send notification email
-        Mail::to($alumni->user->email)->queue(new NewAlumniNotification($alumni));
+        // ✅ Send notification email with a 5-second delay
+        Mail::to($alumni->user->email)->later(now()->addSeconds(5), new NewAlumniNotification($alumni));
 
 
         return redirect()->route('alumni.index')->with('success', 'Alumni added successfully and email sent!');
