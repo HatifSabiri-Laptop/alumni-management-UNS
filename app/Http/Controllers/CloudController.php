@@ -49,6 +49,6 @@ class CloudController extends Controller
             'folder' => 'uploads'
         ]);
 
-        return $result['secure_url'];
+        return view('upload_success', ['url' => $result['secure_url']]);
     }
 }

@@ -47,14 +47,14 @@ This is the most important part!
 - `APP_DEBUG`: `false`
 - `QUEUE_CONNECTION`: `database`
 
-### Database (Railway Magic)
-You don't need to copy-paste passwords! Just use these "reference" values:
-- `DB_CONNECTION`: `mysql`
-- `DB_HOST`: `${{MySQL.MYSQL_HOST}}`
-- `DB_PORT`: `${{MySQL.MYSQL_PORT}}`
-- `DB_DATABASE`: `${{MySQL.MYSQL_DATABASE}}`
-- `DB_USERNAME`: `${{MySQL.MYSQL_USER}}`
-- `DB_PASSWORD`: `${{MySQL.MYSQL_PASSWORD}}`
+### Database (The Easiest Way)
+Instead of adding 5 different variables, just add this **ONE** variable to your App service. It is much more reliable:
+
+| Variable | Value (Copy & Paste exactly) |
+| :--- | :--- |
+| `DB_URL` | `${{MySQL.MYSQL_URL}}` |
+
+*Note: If you use `DB_URL`, you can **delete** the other DB_HOST, DB_PORT, etc. variables.*
 
 ### Cloudinary
 - `CLOUDINARY_CLOUD_NAME`: *(Your cloud name)*
