@@ -64,15 +64,19 @@ You don't need to copy-paste passwords! Just use these "reference" values:
 ---
 
 ## Phase 5: Go Live!
-1.  After adding the variables, Railway will automatically start a new deployment.
-2.  **Run Migrations**: 
+1.  **Correct the Build Command**:
     - Go to your application service -> **Settings** -> **Build Command**.
-    - Change it to: `php artisan migrate --force && npm run build` (if you use Vite) or just ensure migrations run.
-    - Alternatively, go to the **Deployments** tab, click the three dots on the latest deployment, and select **"View Logs"** to see if it's running.
+    - If you added `php artisan migrate` there, **REMOVE IT**.
+    - The Build Command should only be: `npm run build` (if you use Vite) or leave it **Empty**.
+    - *Why?* The database is not yet ready during the "Build" step.
+
+2.  **Automatic Migrations (Procfile)**:
+    - I have updated your `Procfile` to run `php artisan migrate --force` automatically every time the app starts. This is the correct way to do it on Railway.
+
 3.  **Get your URL**:
     - Go to **Settings** -> **Public Networking**.
-    - Click **"Generate Domain"**.
-    - You now have a live website link!
+    - Click **"Generate Domain"** if you haven't yet.
+    - Your app should now deploy successfully!
 
 ---
 
