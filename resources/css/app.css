@@ -4,7 +4,7 @@
 
 /* Custom styles (example) */
 .logo-small {
-  @apply w-10 h-20;
+  /* Removed restrictive sizing */
 }
 
 .btn {

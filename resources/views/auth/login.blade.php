@@ -7,7 +7,7 @@
 
         <!-- Logo (centered) -->
         <div class="flex justify-center mb-3">
-            <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="logo-small" style="max-height: 280px;">
+            <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" style="max-height: 200px;">
         </div>
 
         <!-- Email Address -->
