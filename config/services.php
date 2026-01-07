@@ -41,4 +41,8 @@ return [
         'api_secret' => env('CLOUDINARY_API_SECRET'),
     ],
 
+    'mailtrap' => [
+        'token' => env('MAILTRAP_API_TOKEN'),
+    ],
+
 ];

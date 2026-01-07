@@ -25,8 +25,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (app()->environment('production')) {
-            URL::forceScheme('https');
+        if (config('app.env') === 'production') {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
         }
+
+        \Illuminate\Support\Facades\Mail::extend('mailtrap', function (array $config) {
+            return new \App\Mail\Transports\MailtrapApiTransport(
+                config('services.mailtrap.token')
+            );
+        });
     }
 }
