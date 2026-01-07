@@ -46,4 +46,16 @@ Route::get('/migrate-db', function () {
     }
 });
 
+Route::get('/test-mail', function () {
+    try {
+        \Illuminate\Support\Facades\Mail::raw('Hello from Railway! This is a test email.', function ($message) {
+            $message->to('admin@uns.com') // You can change this to your actual email for testing
+                    ->subject('Railway Connection Test');
+        });
+        return "Email sent successfully to Mailtrap! Check your inbox.";
+    } catch (\Exception $e) {
+        return "Failed to send email. Error: " . $e->getMessage();
+    }
+});
+
 require __DIR__.'/auth.php';
