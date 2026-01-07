@@ -175,7 +175,7 @@
                                 @foreach ($alumni as $a)
                                 <tr class="hover:bg-blue-50 transition-colors duration-150">
                                     <td class="px-4 py-2 border whitespace-nowrap">{{ $a->full_name }}</td>
-                                    <td class="px-4 py-2 border">{{ $a->email }}</td>
+                                    <td class="px-4 py-2 border">{{ $a->user->email }}</td>
                                     <td class="px-4 py-2 border whitespace-nowrap">{{ $a->graduation_year }}</td>
                                     <td class="px-4 py-2 border">{{ $a->program }}</td>
                                     <td class="px-4 py-2 border">{{ $a->job }}</td>
@@ -224,7 +224,7 @@
                         </div>
                         <div class="card-field">
                             <span class="card-label">Email:</span>
-                            <span class="card-value">{{ $a->email }}</span>
+                            <span class="card-value">{{ $a->user->email }}</span>
                         </div>
                         <div class="card-field">
                             <span class="card-label">Graduation:</span>

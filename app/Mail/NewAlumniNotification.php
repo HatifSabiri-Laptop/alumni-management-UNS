@@ -6,8 +6,9 @@ use App\Models\Alumni;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NewAlumniNotification extends Mailable
+class NewAlumniNotification extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 

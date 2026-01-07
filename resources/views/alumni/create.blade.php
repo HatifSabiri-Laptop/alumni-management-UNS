@@ -202,12 +202,6 @@
                     <input type="text" name="full_name" value="{{ old('full_name') }}" class="form-input" required>
                 </div>
 
-                <!-- Email -->
-                <div class="form-row">
-                    <label class="form-label">Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}" class="form-input" required>
-                </div>
-
                 <!-- Graduation Year -->
                 <div class="form-row">
                     <label class="form-label">Graduation Year</label>

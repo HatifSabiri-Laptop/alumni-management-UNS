@@ -33,18 +33,14 @@ class CloudController extends Controller
             'image' => 'required|image',
         ]);
 
-        // 🔥 DEBUG STEP 1 — Check if ENV values are being loaded
-        dd([
-            'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
-            'api_key'    => env('CLOUDINARY_API_KEY'),
-            'api_secret' => env('CLOUDINARY_API_SECRET'),
-        ]);
-
-        // (STOP — don’t run the rest yet)
-
-
         // Initialize Cloudinary correctly
-
+        $cloudinary = new Cloudinary([
+            'cloud' => [
+                'cloud_name' => config('services.cloudinary.cloud_name'),
+                'api_key'    => config('services.cloudinary.api_key'),
+                'api_secret' => config('services.cloudinary.api_secret'),
+            ]
+        ]);
 
         $filePath = $request->file('image')->getRealPath();
 

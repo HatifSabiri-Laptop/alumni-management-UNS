@@ -35,14 +35,12 @@ class AlumniController extends Controller
     {
         $request->validate([
             'graduation_year' => 'required',
-            'email' => 'required|email',
             'program' => 'required',
         ]);
 
         $alumni = Alumni::create([
             'user_id' => Auth::id(),
             'full_name' => $request->full_name,
-            'email' => $request->email,
             'graduation_year' => $request->graduation_year,
             'program' => $request->program,
             'job' => $request->job,
@@ -52,7 +50,7 @@ class AlumniController extends Controller
         ]);
 
         // ✅ Send notification email
-       Mail::to($alumni->email)->send(new NewAlumniNotification($alumni));
+        Mail::to($alumni->user->email)->queue(new NewAlumniNotification($alumni));
 
 
         return redirect()->route('alumni.index')->with('success', 'Alumni added successfully and email sent!');
@@ -74,14 +72,12 @@ class AlumniController extends Controller
     {
         $request->validate([
             'full_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
             'graduation_year' => 'required',
             'program' => 'required',
         ]);
 
         $alumnus->update([
             'full_name' => $request->full_name,
-            'email' => $request->email,
             'graduation_year' => $request->graduation_year,
             'program' => $request->program,
             'job' => $request->job,
